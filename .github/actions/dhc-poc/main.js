@@ -7,7 +7,7 @@ async function run() {
   //console.log(webTests);
   const startTime = new Date().getTime()
   console.log("Start UTC Time: " + new Date().getTime())
-  while (new Date().getTime() - startTime < 100000) {
+  while (new Date().getTime() - startTime < 20000) {
     console.log("UTC Time: " + new Date().getTime())
     const results = await fetchResults();
     results.forEach(element => {
@@ -19,7 +19,7 @@ async function run() {
     console.log("Raw JSON:");
     //console.log(results)
     console.log("Waiting 2s to requery");
-    await sleep(2000);
+    await sleep(5000);
   }
 }
 
