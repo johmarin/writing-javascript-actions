@@ -1,4 +1,5 @@
 const request = require("request-promise");
+const core = require("@actions/core");
 
 const options = {
   method: "GET",
