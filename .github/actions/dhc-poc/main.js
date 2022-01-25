@@ -16,7 +16,7 @@ async function run() {
     results.forEach(element => {
       nameLocation = element.availabilityResult.name + ";" + element.availabilityResult.location
       if (!monitoredWebtests.has(nameLocation))
-        break
+        continue
       console.log(element.availabilityResult.name)
       console.log(element.availabilityResult.location)
       console.log(element.timestamp);
