@@ -23,4 +23,8 @@ async function run() {
   }
 }
 
+function sleep(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
 run();
