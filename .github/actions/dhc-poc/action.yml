@@ -1,0 +1,16 @@
+name: "external call to App Insights"
+
+description: "fetch availability results from app insights"
+
+inputs:
+  api-key:
+    description: "Api key for app insights"
+    required: true
+
+outputs:
+  results-output:
+    description: The availability results from app insights
+
+runs:
+  using: "node12"
+  main: "main.js"
