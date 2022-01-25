@@ -15,7 +15,9 @@ async function run() {
     const results = await fetchResults();
     results.forEach(element => {
       nameLocation = element.availabilityResult.name + ";" + element.availabilityResult.location
-      if (!monitoredWebtests.has(nameLocation))
+      
+      //Exclude non monitored tests or tests that completed before startTime
+      if (!monitoredWebtests.has(nameLocation) || new Date(element.timestamp) < startTime)
         return
       console.log(element.availabilityResult.name)
       console.log(element.availabilityResult.location)
