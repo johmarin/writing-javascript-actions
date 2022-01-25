@@ -17,9 +17,9 @@ async function run() {
       console.log(element.availabilityResult.success)
     });
     console.log("Raw JSON:");
-    console.log(results)
-    console.log("Waiting 10s to requery")
-    await (sleep(10000))
+    //console.log(results)
+    console.log("Waiting 2s to requery")
+    await (sleep(2000))
   }
 }
 
