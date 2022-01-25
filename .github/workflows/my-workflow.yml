@@ -25,5 +25,6 @@ jobs:
       - name: test-api
         uses: ./.github/actions/dhc-poc
         with:
+          subscription-id: ${{secrets.SUBSCRIPTION_ID}}
           application-id: ${{secrets.APPLICATION_ID}}
           api-key: ${{secrets.API_KEY}}
