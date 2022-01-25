@@ -3,6 +3,9 @@ name: "external call to App Insights"
 description: "fetch availability results from app insights"
 
 inputs:
+  application-id:
+    description: "Appliciaton id for app insights"
+    required: true
   api-key:
     description: "Api key for app insights"
     required: true
