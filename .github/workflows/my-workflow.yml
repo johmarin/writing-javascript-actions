@@ -10,16 +10,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-
-      - name: hello-action
-        uses: ./.github/actions/hello-world
-
-      - name: ha-ha
-        uses: ./.github/actions/joke-action
-        id: jokes
-
-      - name: create-issue
-        uses: ./.github/actions/issue-maker
+#
+#      - name: hello-action
+#        uses: ./.github/actions/hello-world
+#
+#      - name: ha-ha
+#        uses: ./.github/actions/joke-action
+#        id: jokes
+#
+#      - name: create-issue
+#        uses: ./.github/actions/issue-maker
+#        with:
+#          repo-token: ${{secrets.GITHUB_TOKEN}}
+#          joke: ${{steps.jokes.outputs.joke-output}}
+      - name: test-api
+        uses: ./.github/actions/dhc-poc
         with:
-          repo-token: ${{secrets.GITHUB_TOKEN}}
-          joke: ${{steps.jokes.outputs.joke-output}}
+          application-id: ${{secrets.APPLICATION_ID}}
+          api-key: ${{secrets.API_KEY}}
