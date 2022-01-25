@@ -18,8 +18,8 @@ async function run() {
     });
     console.log("Raw JSON:");
     //console.log(results)
-    console.log("Waiting 2s to requery")
-    await (sleep(2000))
+    console.log("Waiting 2s to requery");
+    await sleep(2000);
   }
 }
 
