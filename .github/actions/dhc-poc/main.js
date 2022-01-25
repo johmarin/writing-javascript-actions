@@ -6,7 +6,7 @@ async function run() {
   //const webTests = await listWebtests();
   //console.log(webTests);
   var monitoredWebtests = new Set();
-  monitoredWebtests.add("Synthetic AIWebTests: ReleaseCompleted;West US 2")
+  monitoredWebtests.add("Ping-Availability Test;Central US")
   const timeout = 20 * 60 * 1000
   const startTime = new Date().getTime()
   console.log("Start UTC Time: " + new Date().getTime())
