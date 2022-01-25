@@ -6,7 +6,8 @@ async function run() {
   //const webTests = await listWebtests();
   //console.log(webTests);
   const startTime = new Date().getTime()
-  while (new Date().getTime() - startTime > 100000) {
+  console.log("Start UTC Time: " + new Date().getTime())
+  while (new Date().getTime() - startTime < 100000) {
     console.log("UTC Time: " + new Date().getTime())
     const results = await fetchResults();
     results.forEach(element => {
