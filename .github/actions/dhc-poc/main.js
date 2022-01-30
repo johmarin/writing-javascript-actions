@@ -13,7 +13,7 @@ async function run() {
   console.log("Start UTC Time: " + new Date().getTime())
   const token = getBearerToken();
   const webTests = listWebtests(token);
-  console.log(webTests);
+  console.log(webTests.value);
   while (new Date().getTime() - startTime < timeout) {
     console.log("UTC Time: " + new Date().getTime())
     const results = await fetchResults();
