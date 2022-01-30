@@ -8,13 +8,21 @@ const data = {
   "resource": "https://management.azure.com/"
 };
 
+var formBody = [];
+for (var property in data) {
+  var encodedKey = encodeURIComponent(property);
+  var encodedValue = encodeURIComponent(details[property]);
+  formBody.push(encodedKey + "=" + encodedValue);
+}
+formBody = formBody.join("&");
+
 const options = {
   method: "POST",
   uri: "https://login.microsoftonline.com/"+core.getInput("tenant-id")+"/oauth2/token",
   headers: {
-    "Content-Type": "application/json"
+    "Content-Type": "x-www-form-urlencoded"
   },
-  body: JSON.stringify(data)
+  body: formBody
 };
 
 async function getBearerToken() {
