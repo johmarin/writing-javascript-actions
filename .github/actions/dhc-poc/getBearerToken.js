@@ -22,7 +22,7 @@ const options = {
   headers: {
     "Content-Type": "application/x-www-form-urlencoded"
   },
-  body: "grant_type=client_credentials"
+  body: formBody
 };
 
 async function getBearerToken() {
