@@ -27,7 +27,7 @@ const options = {
 
 async function getBearerToken() {
   const res = await request(options);
-  return res.value;
+  return res.access_token;
 }
 
 module.exports = getBearerToken;
