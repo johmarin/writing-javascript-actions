@@ -12,7 +12,8 @@ const options = {
     "client_id": core.getInput("client-id"),
     "client_secret": core.getInput("client-secret"),
     "resource": "https://management.azure.com/"
-  }
+  },
+  json: true
 };
 
 async function getBearerToken() {
