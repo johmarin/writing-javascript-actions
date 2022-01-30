@@ -20,9 +20,9 @@ const options = {
   method: "POST",
   uri: "https://login.microsoftonline.com/"+core.getInput("tenant-id")+"/oauth2/token",
   headers: {
-    "Content-Type": "x-www-form-urlencoded"
+    "Content-Type": "application/x-www-form-urlencoded"
   },
-  body: formBody
+  body: "grant_type=client_credentials"
 };
 
 async function getBearerToken() {
