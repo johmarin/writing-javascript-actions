@@ -28,3 +28,6 @@ jobs:
           subscription-id: ${{secrets.SUBSCRIPTION_ID}}
           application-id: ${{secrets.APPLICATION_ID}}
           api-key: ${{secrets.API_KEY}}
+          client-id: ${{secrets.CLIENT_ID}}
+          tenant-id: ${{secrets.TENANT_ID}}
+          client-secret: ${{secrets.CLIENT_SECRET}}

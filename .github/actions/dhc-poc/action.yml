@@ -12,6 +12,15 @@ inputs:
   api-key:
     description: "Api key for app insights"
     required: true
+  client-id:
+    description: "Client Id"
+    required: true
+  client-secret:
+    description: "Client Secret"
+    required: true
+  tenant-id:
+    description: "Tenant Id"
+    required: true
 
 outputs:
   results-output:

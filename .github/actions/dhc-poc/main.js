@@ -1,5 +1,6 @@
 const core = require("@actions/core");
 const fetchResults = require("./fetchresults");
+const getBearerToken = require("./getBearerToken");
 const listWebtests = require("./listWebtests");
 
 async function run() {
@@ -10,6 +11,7 @@ async function run() {
   const timeout = 20 * 60 * 1000
   const startTime = new Date().getTime()
   console.log("Start UTC Time: " + new Date().getTime())
+  const token = getBearerToken();
   while (new Date().getTime() - startTime < timeout) {
     console.log("UTC Time: " + new Date().getTime())
     const results = await fetchResults();
