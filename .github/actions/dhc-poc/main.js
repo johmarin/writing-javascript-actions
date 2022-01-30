@@ -12,9 +12,9 @@ async function run() {
   const startTime = new Date().getTime()
   console.log("Start UTC Time: " + new Date().getTime())
   const token = await getBearerToken();
-  //console.log(token.substring(0,5))
-  //const webTests = await listWebtests(token);
-  //console.log(webTests.value);
+  console.log(token.substring(0,5))
+  const webTests = await listWebtests(token);
+  console.log(webTests);
   while (new Date().getTime() - startTime < timeout) {
     console.log("UTC Time: " + new Date().getTime())
     const results = await fetchResults();
