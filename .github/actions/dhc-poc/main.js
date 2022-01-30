@@ -8,11 +8,11 @@ async function run() {
   //console.log(webTests);
   var monitoredWebtests = new Set();
   monitoredWebtests.add("Ping-Availability Test;Central US")
-  const timeout = 20 * 60 * 1000
+  const timeout = 1 * 60 * 1000
   const startTime = new Date().getTime()
   console.log("Start UTC Time: " + new Date().getTime())
   const token = getBearerToken();
-  const webTests = listWebtests(token);
+  //const webTests = listWebtests(token);
   console.log(webTests);
   while (new Date().getTime() - startTime < timeout) {
     console.log("UTC Time: " + new Date().getTime())

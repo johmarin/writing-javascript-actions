@@ -5,13 +5,14 @@ const options = {
   method: "POST",
   uri: "https://login.microsoftonline.com/"+core.getInput("tenant-id")+"/oauth2/token",
   headers: {
-    Accept: "application/json",
+    "Content-Type": "application/json"
+  },
+  body: {
     "grant_type": "client_credentials",
     "client_id": core.getInput("client-id"),
     "client_secret": core.getInput("client-secret"),
     "resource": "https://management.azure.com/"
-  },
-  json: true
+  }
 };
 
 async function getBearerToken() {
