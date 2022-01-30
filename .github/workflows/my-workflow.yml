@@ -2,6 +2,7 @@ name: JS Actions
 
 on:
   push:
+  workflow_dispatch:
 
 jobs:
   action:
