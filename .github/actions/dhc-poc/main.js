@@ -11,6 +11,17 @@ const regionIdToDisplayName = new Map([
   ['us-fl-mia-edge', 'Central US']
 ])
 
+async function testsCompleted(webTests) {
+  var testsSuccessful = 0
+  for (const [key, value] of webTests) {
+    if(value.hasSuccessfulResult == 1) {
+      testsSuccessful++;
+    }
+  }
+  console.log(testsSuccessful+"/"+webTests.size+" tests completed successfully")
+  return testsSuccessful == webTests.size
+}
+
 async function logStatus(webTests) {
   for (const [key, value] of webTests) {
     console.log("WebtestId: "+key+", Has Success: "+value.hasSuccessfulResult)
@@ -19,6 +30,7 @@ async function logStatus(webTests) {
 
 async function run() {
   var monitoredWebtests = new Set();
+  var allTestsCompleted = false;
   monitoredWebtests.add("Ping-Availability Test;Central US")
   const timeout = 20 * 60 * 1000
   const startTime = new Date().getTime()
@@ -89,10 +101,21 @@ async function run() {
       console.log("Success:" + element.availabilityResult.success)
     });
     logStatus(webTests)
+    if (testsCompleted(webTests)) {
+      allTestsCompleted = true;
+      break
+    }
     //console.log("Raw JSON:");
     //console.log(results)
     console.log("Waiting 60s to requery");
     await sleep(60*1000);
+  }
+
+  if (allTestsCompleted) {
+    console.log("All tests completed successfully");
+  }
+  else {
+    core.setFailed("Timed out")
   }
 }
 
