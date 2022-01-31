@@ -25,10 +25,15 @@ async function run() {
     console.log("Id: "+webTestResult.properties.SyntheticMonitorId)
 
     const tags = webTestResult.tags;
-    console.log(tags);
+    //console.log(tags);
+    const validResource = false
     Object.keys(tags).forEach(tag => {
-      console.log("Tag: "+tag)
+      if (tag.contains("/components/"+resourceName))
+        validResource = true
     });
+
+    if (!validResource)
+      return
 
     //if (!webTestResult.properties.SyntheticMonitorId.endsWith(resourceName))
     //  return
