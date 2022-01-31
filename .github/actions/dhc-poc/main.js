@@ -21,13 +21,15 @@ async function run() {
 
   const webTests = new Map();
   webTestsResult.forEach(webTestResult => {
+    console.log("Name: "+webTestResult.properties.name)
+    console.log("Id: "+webTestResult.properties.SyntheticMonitorId)
     if (!webTestResult.properties.SyntheticMonitorId.endsWith(resourceName))
       return
 
     if (!webTestResult.properties.Name.startsWith(webTestFilter))
       return
     
-    console.log("Name: "+webTestResult.properties.name)
+    //console.log("Name: "+webTestResult.properties.name)
     console.log("Regions: "+webTestResult.properties.location)
     webTests.set(webTestResult.properties.name)
 
