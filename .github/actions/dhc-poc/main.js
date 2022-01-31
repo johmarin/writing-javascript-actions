@@ -30,7 +30,7 @@ async function run() {
       return
     
     //console.log("Name: "+webTestResult.properties.name)
-    console.log("Regions: "+webTestResult.properties.Locations)
+    console.log("Regions: "+webTestResult.properties.Locations.toString())
     webTests.set(webTestResult.properties.name)
 
   });
