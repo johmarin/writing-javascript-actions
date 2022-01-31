@@ -70,11 +70,12 @@ async function run() {
       receivedTestResults.add(element.id)
 
 
-      const key = element.availabilityResult.name+"-"+element.availabilityResult.location
+      const key = element.availabilityResult.name+"-"+element.customDimensions.WebtestLocationId
       if (webTests.has(key) && element.availabilityResult.success == 1) {
         webTests.set(key, {hasSuccessfulResult: true})
       }
       console.log(element.availabilityResult.name)
+      console.log("webTestUniqueName: "+key)
       console.log(element.availabilityResult.location)
       console.log(element.timestamp);
       console.log("Success:" + element.availabilityResult.success)
@@ -82,8 +83,8 @@ async function run() {
     logStatus(webTests)
     //console.log("Raw JSON:");
     //console.log(results)
-    console.log("Waiting 20s to requery");
-    await sleep(20*1000);
+    console.log("Waiting 60s to requery");
+    await sleep(60*1000);
   }
 }
 
