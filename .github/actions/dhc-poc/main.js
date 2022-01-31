@@ -16,7 +16,7 @@ async function run() {
   const webTestsResult = await listWebtests(token);
   const resourceName = "safe-velocity-func-app-ppe"
   console.log("Processing Web Tests")
-  console.log(webTests);
+  console.log(webTestsResult);
 
   const webTests = new Map();
   webTestsResult.forEach(webTestResult => {
