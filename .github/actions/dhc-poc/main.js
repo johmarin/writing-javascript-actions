@@ -6,7 +6,7 @@ const listWebtests = require("./listWebtests");
 async function run() {
   var monitoredWebtests = new Set();
   monitoredWebtests.add("Ping-Availability Test;Central US")
-  const timeout = 1 * 60 * 1000
+  const timeout = 1 * 10 * 1000
   const startTime = new Date().getTime()
   console.log("Start UTC Time: " + new Date().getTime())
 
@@ -14,15 +14,21 @@ async function run() {
 
   
   const webTestsResult = await listWebtests(token);
-  const resourceName = "safe-velocity-func-app-ppe"
+  const resourceName = "safe-velocity-func-app-ppe";
+  const webTestFilter = "Ping-Availability Test";
   console.log("Processing Web Tests")
   console.log(webTestsResult);
 
   const webTests = new Map();
   webTestsResult.forEach(webTestResult => {
-    if (!webTestResult.name.endsWith(resourceName))
+    if (!webTestResult.properties.SyntheticMonitorId.endsWith(resourceName))
       return
+
+    if (!webTestResult.properties.Name.startsWith(webTestFilter))
+      return
+    
     console.log("Name: "+webTestResult.properties.name)
+    console.log("Regions: "+webTestResult.properties.location)
     webTests.set(webTestResult.properties.name)
 
   });
@@ -41,7 +47,7 @@ async function run() {
       console.log(element.availabilityResult.success)
     });
     //console.log("Raw JSON:");
-    console.log(results)
+    //console.log(results)
     console.log("Waiting 20s to requery");
     await sleep(20*1000);
   }
