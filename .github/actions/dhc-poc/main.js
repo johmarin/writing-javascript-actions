@@ -32,7 +32,7 @@ async function run() {
     //console.log("Name: "+webTestResult.properties.name)
     console.log("Regions:")
     webTestResult.properties.Locations.forEach(region => {
-      console.log("Region: "+region)
+      console.log("Region: "+region.Id)
     });
     webTests.set(webTestResult.properties.name)
 
