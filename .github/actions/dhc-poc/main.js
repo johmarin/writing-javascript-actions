@@ -23,8 +23,8 @@ async function run() {
   webTestsResult.forEach(webTestResult => {
     console.log("Name: "+webTestResult.properties.Name)
     console.log("Id: "+webTestResult.properties.SyntheticMonitorId)
-    if (!webTestResult.properties.SyntheticMonitorId.endsWith(resourceName))
-      return
+    //if (!webTestResult.properties.SyntheticMonitorId.endsWith(resourceName))
+    //  return
 
     if (!webTestResult.properties.Name.startsWith(webTestFilter))
       return
