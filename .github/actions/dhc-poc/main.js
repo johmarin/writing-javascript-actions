@@ -28,7 +28,7 @@ async function run() {
     //console.log(tags);
     const validResource = false
     Object.keys(tags).forEach(tag => {
-      if (tag.contains("/components/"+resourceName))
+      if (tag.includes("/components/"+resourceName))
         validResource = true
     });
 
