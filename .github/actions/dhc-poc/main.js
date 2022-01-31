@@ -32,7 +32,7 @@ async function run() {
   var monitoredWebtests = new Set();
   var allTestsCompleted = false;
   monitoredWebtests.add("Ping-Availability Test;Central US")
-  const timeout = 1 * 60 * 1000
+  const timeout = 15 * 60 * 1000
   const startTime = new Date().getTime()
   console.log("Start UTC Time: " + new Date().getTime())
 
@@ -44,12 +44,12 @@ async function run() {
   const webTestFilter = "Ping-Availability Test";
   var receivedTestResults = new Set();
   console.log("Processing Web Tests")
-  console.log(webTestsResult);
+  //console.log(webTestsResult);
 
   var webTests = new Map();
   webTestsResult.forEach(webTestResult => {
-    console.log("Name: "+webTestResult.properties.Name)
-    console.log("Id: "+webTestResult.properties.SyntheticMonitorId)
+    //console.log("Name: "+webTestResult.properties.Name)
+    //console.log("Id: "+webTestResult.properties.SyntheticMonitorId)
 
     const tags = webTestResult.tags;
     //console.log(tags);
@@ -68,7 +68,7 @@ async function run() {
     if (!webTestResult.properties.Name.startsWith(webTestFilter))
       return
     
-    //console.log("Name: "+webTestResult.properties.name)
+    console.log("Name: "+webTestResult.properties.Name)
     console.log("Regions:")
     webTestResult.properties.Locations.forEach(region => {
       console.log("Region: "+region.Id+" => "+regionIdToDisplayName.get(region.Id))
@@ -78,7 +78,7 @@ async function run() {
 
   });
   while (new Date().getTime() - startTime < timeout) {
-    console.log("UTC Time: " + new Date().getTime())
+    //console.log("UTC Time: " + new Date().getTime())
     const results = await fetchResults();
     results.forEach(element => {
       nameLocation = element.availabilityResult.name + ";" + element.availabilityResult.location
