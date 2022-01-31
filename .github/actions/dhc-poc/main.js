@@ -52,7 +52,7 @@ async function run() {
     console.log("Regions:")
     webTestResult.properties.Locations.forEach(region => {
       console.log("Region: "+region.Id)
-      webTests.set(webTestResult.properties.name+":"+region.Id, {hasSuccessfulResult: false})
+      webTests.set(webTestResult.properties.Name+":"+region.Id, {hasSuccessfulResult: false})
     });
     
 
