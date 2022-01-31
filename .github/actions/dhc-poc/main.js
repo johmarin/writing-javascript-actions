@@ -26,9 +26,9 @@ async function run() {
 
     const tags = webTestResult.tags;
     console.log(tags);
-    //tags.forEach(tag => {
-    //  console.log("Tag: "+tag)
-    //});
+    tags.keys(obj).forEach(tag => {
+      console.log("Tag: "+tag)
+    });
 
     //if (!webTestResult.properties.SyntheticMonitorId.endsWith(resourceName))
     //  return
