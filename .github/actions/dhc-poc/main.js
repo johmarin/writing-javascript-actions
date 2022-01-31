@@ -4,17 +4,28 @@ const getBearerToken = require("./getBearerToken");
 const listWebtests = require("./listWebtests");
 
 async function run() {
-  //const webTests = await listWebtests();
-  //console.log(webTests);
   var monitoredWebtests = new Set();
   monitoredWebtests.add("Ping-Availability Test;Central US")
   const timeout = 1 * 60 * 1000
   const startTime = new Date().getTime()
   console.log("Start UTC Time: " + new Date().getTime())
+
   const token = await getBearerToken();
-  console.log(token.substring(0,5))
-  const webTests = await listWebtests(token);
+
+  
+  const webTestsResult = await listWebtests(token);
+  const resourceName = "safe-velocity-func-app-ppe"
+  console.log("Processing Web Tests")
   console.log(webTests);
+
+  const webTests = new Map();
+  webTestsResult.forEach(webTestResult => {
+    if (!webTestResult.name.endsWith(resourceName))
+      return
+    console.log("Name: "+webTestResult.properties.name)
+    webTests.set(webTestResult.properties.name)
+
+  });
   while (new Date().getTime() - startTime < timeout) {
     console.log("UTC Time: " + new Date().getTime())
     const results = await fetchResults();
@@ -30,7 +41,7 @@ async function run() {
       console.log(element.availabilityResult.success)
     });
     //console.log("Raw JSON:");
-    //console.log(results)
+    console.log(results)
     console.log("Waiting 20s to requery");
     await sleep(20*1000);
   }
