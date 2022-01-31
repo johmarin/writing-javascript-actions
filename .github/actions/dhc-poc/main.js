@@ -94,10 +94,12 @@ async function run() {
       if (webTests.has(key) && element.availabilityResult.success == 1) {
         webTests.set(key, {hasSuccessfulResult: true})
       }
-      console.log(element.availabilityResult.name)
-      console.log("webTestUniqueName: "+key)
-      console.log(element.availabilityResult.location)
-      console.log(element.timestamp);
+      console.log("Received new webtest result")
+      console.log("Webtest Name-Region: "+key)
+      //console.log(element.availabilityResult.name)
+      //console.log("webTestUniqueName: "+key)
+      //console.log(element.availabilityResult.location)
+      //console.log(element.timestamp);
       console.log("Success:" + element.availabilityResult.success)
     });
     await logStatus(webTests)
