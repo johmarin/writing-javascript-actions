@@ -14,7 +14,7 @@ async function run() {
 
   
   const webTestsResult = await listWebtests(token);
-  const resourceName = "dhc-aiwebtests-ai-dev'";
+  const resourceName = "dhc-aiwebtests-ai-dev";
   const webTestFilter = "Ping-Availability Test";
   console.log("Processing Web Tests")
   console.log(webTestsResult);
