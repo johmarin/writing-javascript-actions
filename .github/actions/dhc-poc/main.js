@@ -3,6 +3,14 @@ const fetchResults = require("./fetchresults");
 const getBearerToken = require("./getBearerToken");
 const listWebtests = require("./listWebtests");
 
+const regionIdToDisplayName = new Map([
+  ['emea-nl-ams-azr', 'West Europe'],
+  ['us-ca-sjc-azr', 'West US'],
+  ['apac-sg-sin-azr', 'Southeast Asia'],
+  ['us-tx-sn1-azr', 'South Central US'],
+  ['us-fl-mia-edge', 'Central US']
+])
+
 async function logStatus(webTests) {
   for (const [key, value] of webTests) {
     console.log("WebtestId: "+key+", Has Success: "+value.hasSuccessfulResult)
@@ -12,7 +20,7 @@ async function logStatus(webTests) {
 async function run() {
   var monitoredWebtests = new Set();
   monitoredWebtests.add("Ping-Availability Test;Central US")
-  const timeout = 10 * 60 * 1000
+  const timeout = 20 * 60 * 1000
   const startTime = new Date().getTime()
   console.log("Start UTC Time: " + new Date().getTime())
 
@@ -51,8 +59,8 @@ async function run() {
     //console.log("Name: "+webTestResult.properties.name)
     console.log("Regions:")
     webTestResult.properties.Locations.forEach(region => {
-      console.log("Region: "+region.Id)
-      webTests.set(webTestResult.properties.Name+"-"+region.Id, {hasSuccessfulResult: false})
+      console.log("Region: "+region.Id+" => "+regionIdToDisplayName.get(region.Id))
+      webTests.set(webTestResult.properties.Name+"-"+regionIdToDisplayName.get(region.Id), {hasSuccessfulResult: false})
     });
     
 
@@ -70,7 +78,7 @@ async function run() {
       receivedTestResults.add(element.id)
 
 
-      const key = element.availabilityResult.name+"-"+element.customDimensions.WebtestLocationId
+      const key = element.availabilityResult.name+"-"+element.availabilityResult.location
       if (webTests.has(key) && element.availabilityResult.success == 1) {
         webTests.set(key, {hasSuccessfulResult: true})
       }
