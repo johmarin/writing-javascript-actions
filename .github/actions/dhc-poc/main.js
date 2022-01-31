@@ -6,7 +6,7 @@ const listWebtests = require("./listWebtests");
 async function run() {
   var monitoredWebtests = new Set();
   monitoredWebtests.add("Ping-Availability Test;Central US")
-  const timeout = 1 * 10 * 1000
+  const timeout = 10 * 60 * 1000
   const startTime = new Date().getTime()
   console.log("Start UTC Time: " + new Date().getTime())
 
@@ -16,10 +16,11 @@ async function run() {
   const webTestsResult = await listWebtests(token);
   const resourceName = "dhc-aiwebtests-ai-dev";
   const webTestFilter = "Ping-Availability Test";
+  var receivedTestResults = new Set();
   console.log("Processing Web Tests")
   console.log(webTestsResult);
 
-  const webTests = new Map();
+  var webTests = new Map();
   webTestsResult.forEach(webTestResult => {
     console.log("Name: "+webTestResult.properties.Name)
     console.log("Id: "+webTestResult.properties.SyntheticMonitorId)
@@ -56,12 +57,15 @@ async function run() {
       nameLocation = element.availabilityResult.name + ";" + element.availabilityResult.location
       
       //Exclude non monitored tests or tests that completed before startTime
-      if (!monitoredWebtests.has(nameLocation) || new Date(element.timestamp) < startTime)
+      if (receivedTestResults.has(element.id) || new Date(element.timestamp) < startTime)
         return
+
+      receivedTestResults.add(element.id)
+
       console.log(element.availabilityResult.name)
       console.log(element.availabilityResult.location)
       console.log(element.timestamp);
-      console.log(element.availabilityResult.success)
+      console.log("Success:" + element.availabilityResult.success)
     });
     //console.log("Raw JSON:");
     //console.log(results)
