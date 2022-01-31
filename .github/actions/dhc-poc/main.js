@@ -23,6 +23,10 @@ async function run() {
   webTestsResult.forEach(webTestResult => {
     console.log("Name: "+webTestResult.properties.Name)
     console.log("Id: "+webTestResult.properties.SyntheticMonitorId)
+
+    webTestResult.forEach(tag => {
+      console.log("Tag: "+tag)
+    });
     //if (!webTestResult.properties.SyntheticMonitorId.endsWith(resourceName))
     //  return
 
