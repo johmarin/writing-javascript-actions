@@ -21,7 +21,7 @@ async function run() {
 
   const webTests = new Map();
   webTestsResult.forEach(webTestResult => {
-    console.log("Name: "+webTestResult.properties.name)
+    console.log("Name: "+webTestResult.properties.Name)
     console.log("Id: "+webTestResult.properties.SyntheticMonitorId)
     if (!webTestResult.properties.SyntheticMonitorId.endsWith(resourceName))
       return
