@@ -26,7 +26,7 @@ async function run() {
 
     const tags = webTestResult.tags;
     //console.log(tags);
-    const validResource = false
+    var validResource = false
     Object.keys(tags).forEach(tag => {
       if (tag.includes("/components/"+resourceName))
         validResource = true
