@@ -52,7 +52,7 @@ async function run() {
     console.log("Regions:")
     webTestResult.properties.Locations.forEach(region => {
       console.log("Region: "+region.Id)
-      webTests.set(webTestResult.properties.Name+":"+region.Id, {hasSuccessfulResult: false})
+      webTests.set(webTestResult.properties.Name+"-"+region.Id, {hasSuccessfulResult: false})
     });
     
 
@@ -69,6 +69,11 @@ async function run() {
 
       receivedTestResults.add(element.id)
 
+
+      const key = element.availabilityResult.name+"-"+element.availabilityResult.location
+      if (webTests.has(key) && element.availabilityResult.success == 1) {
+        webTests.set(key, {hasSuccessfulResult: true})
+      }
       console.log(element.availabilityResult.name)
       console.log(element.availabilityResult.location)
       console.log(element.timestamp);
