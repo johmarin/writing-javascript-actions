@@ -26,7 +26,7 @@ async function run() {
 
     const tags = webTestResult.tags;
     console.log(tags);
-    tags.keys(obj).forEach(tag => {
+    Object.keys(tags).forEach(tag => {
       console.log("Tag: "+tag)
     });
 
