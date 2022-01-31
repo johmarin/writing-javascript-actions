@@ -100,8 +100,8 @@ async function run() {
       console.log(element.timestamp);
       console.log("Success:" + element.availabilityResult.success)
     });
-    logStatus(webTests)
-    if (testsCompleted(webTests)) {
+    await logStatus(webTests)
+    if (await testsCompleted(webTests)) {
       allTestsCompleted = true;
       break
     }
