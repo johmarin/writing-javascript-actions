@@ -3,6 +3,12 @@ const fetchResults = require("./fetchresults");
 const getBearerToken = require("./getBearerToken");
 const listWebtests = require("./listWebtests");
 
+async function logStatus(webTests) {
+  for (const [key, value] of webTests) {
+    console.log("WebtestId: "+key+", Has Success: "+value.hasSuccessfulResult)
+  }
+}
+
 async function run() {
   var monitoredWebtests = new Set();
   monitoredWebtests.add("Ping-Availability Test;Central US")
@@ -46,8 +52,9 @@ async function run() {
     console.log("Regions:")
     webTestResult.properties.Locations.forEach(region => {
       console.log("Region: "+region.Id)
+      webTests.set(webTestResult.properties.name+":"+region.Id, {hasSuccessfulResult: false})
     });
-    webTests.set(webTestResult.properties.name)
+    
 
   });
   while (new Date().getTime() - startTime < timeout) {
@@ -67,6 +74,7 @@ async function run() {
       console.log(element.timestamp);
       console.log("Success:" + element.availabilityResult.success)
     });
+    logStatus(webTests)
     //console.log("Raw JSON:");
     //console.log(results)
     console.log("Waiting 20s to requery");
