@@ -100,7 +100,7 @@ async function run() {
       //console.log("webTestUniqueName: "+key)
       //console.log(element.availabilityResult.location)
       //console.log(element.timestamp);
-      console.log("Success:" + element.availabilityResult.success)
+      console.log("Success:" + element.availabilityResult.success )
     });
     await logStatus(webTests)
     if (await testsCompleted(webTests)) {
