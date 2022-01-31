@@ -32,7 +32,7 @@ async function run() {
   var monitoredWebtests = new Set();
   var allTestsCompleted = false;
   monitoredWebtests.add("Ping-Availability Test;Central US")
-  const timeout = 20 * 60 * 1000
+  const timeout = 1 * 60 * 1000
   const startTime = new Date().getTime()
   console.log("Start UTC Time: " + new Date().getTime())
 
