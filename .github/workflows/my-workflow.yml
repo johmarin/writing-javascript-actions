@@ -1,8 +1,8 @@
-name: JS Actions
+name: dhc-poc
 
 on:
-  pull_request:
-    types: [labeled]
+  push:
+  workflow_dispatch:
 
 jobs:
   action:
@@ -10,16 +10,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-
-      - name: hello-action
-        uses: ./.github/actions/hello-world
-
-      - name: ha-ha
-        uses: ./.github/actions/joke-action
-        id: jokes
-
-      - name: create-issue
-        uses: ./.github/actions/issue-maker
+      - name: dhc-poc
+        uses: ./.github/actions/dhc-poc
         with:
-          repo-token: ${{secrets.GITHUB_TOKEN}}
-          joke: ${{steps.jokes.outputs.joke-output}}
+          subscription-id: ${{secrets.SUBSCRIPTION_ID}}
+          application-id: ${{secrets.APPLICATION_ID}}
+          api-key: ${{secrets.API_KEY}}
+          client-id: ${{secrets.CLIENT_ID}}
+          tenant-id: ${{secrets.TENANT_ID}}
+          client-secret: ${{secrets.CLIENT_SECRET}}

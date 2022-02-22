@@ -1,0 +1,31 @@
+name: "external call to App Insights"
+
+description: "fetch availability results from app insights"
+
+inputs:
+  subscription-id:
+    description: "Appliciaton id for app insights"
+    required: true
+  application-id:
+    description: "Appliciaton id for app insights"
+    required: true
+  api-key:
+    description: "Api key for app insights"
+    required: true
+  client-id:
+    description: "Client Id"
+    required: true
+  client-secret:
+    description: "Client Secret"
+    required: true
+  tenant-id:
+    description: "Tenant Id"
+    required: true
+
+outputs:
+  results-output:
+    description: The availability results from app insights
+
+runs:
+  using: "node12"
+  main: "main.js"
